@@ -1,0 +1,24 @@
+Create "Vagrantfile" with the following contents:
+
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "mitra_test"
+  config.vm.box_url = "http://url-for-centos-base.box/centos64.box"
+
+  # config.vm.network "public_network", :bridge => 'en1: Wi-Fi (AirPort)'
+  config.vm.network "public_network", :bridge => 'en0: Ethernet'
+
+  config.vm.provider :virtualbox do |vb|
+   vb.gui = true
+  end
+
+  ## Launch the script
+  config.vm.provision "shell", path: "~/work/vagrantscripts/onenode_cdhMRv1.sh", args: “4.5.0”
+#  config.vm.provision "shell", path: "~/work/vagrantscripts/onenode_cdhYARN.sh", args: "5.0.0b1"
+
+end
+
